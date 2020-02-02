@@ -1,4 +1,4 @@
-export const REGION = 'us-east-2';
+export const REGION = 'us-east-1';
 
 export const PRIMARY_KEY_PAIR_NAME = 'my-key-pair';
 

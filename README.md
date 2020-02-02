@@ -1,11 +1,22 @@
 # aws-as-code
-DevOps - automation of AWS
+
+DevOps - automation of AWS. This is a open source project can used by anyone to learn about AWS cloud.
+
+## Environment variable for config
+
+This should go ~/.bash_profile. Note: this wont work in Windows system.
+
+export AWS_ACCESS_KEY_ID=AKIAY42DUI7B5GEXAMPLE
+
+export AWS_SECRET_ACCESS_KEY=qNUdlsOwLYblablablablabxlfOc9EYQhGRo9gRJ
+
+export AWS_DEFAULT_REGION=us-east-2
 
 ## IAM
 
-Identity and access management is a service for authorization and authentication for AWS API.
-
-When send request to AWS API, IAM will verifies your identity and checks you are allowed or not. Its basically verifies and validates who access what in AWS.
+- Identity and access management do not falls under any region (data centers). Its a global service.
+- IAM is a service for authorization and authentication for AWS API.
+- When send request to AWS API, IAM will verifies your identity and checks you are allowed or not. Its basically verifies and validates who access what in AWS.
 
 Four primary IAM concepts:
 
@@ -19,7 +30,7 @@ Four primary IAM concepts:
 
 ### IAM group
 
-- As name suggest, its a goup of IAM user.
+- As name suggest, its a group of IAM user.
 - Root user can't be part of a group.
 
 ### IAM role
@@ -62,3 +73,18 @@ Four primary IAM concepts:
 ### Account id
 
 Can be found in name >> my accounts its a 12 digit number unique number per account.
+
+## AWS service endpoints
+
+To connect programmatically to an AWS service, you use an endpoint. An **endpoint is the URL of the entry point for an AWS web service**. The AWS SDKs and the AWS Command Line Interface (AWS CLI).
+
+Most Amazon Web Services offer a **Regional endpoint**
+
+> Regional end points: protocol://service-code.region-code.amazonaws.com
+
+**Region code** (These region codes are required while using AWS sdk.)
+
+- US East (Ohio) : us-east-2
+- US East (N. Virginia) : us-east-1 (we are using)
+
+For more details refer : [AWS docs on endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)
