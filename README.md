@@ -118,4 +118,4 @@ However, for many AWS API support a parameter called **client token**, which imp
 
 A client token is a unique, case-sensitive string of up to 64 ASCII characters that you specify when you make a mutating API request.
 
-ref: [AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
+ref: [AWS DOCS](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
