@@ -1,5 +1,5 @@
 import { EC2 } from 'aws-sdk';
-import { PRIMARY_KEY_PAIR_NAME, REGION } from '../constants';
+import { PRIMARY_KEY_PAIR_NAME, REGION } from '../../constants';
 import describeKeyPair from './describeKeyPair';
 
 
