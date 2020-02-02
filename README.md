@@ -1,16 +1,24 @@
 # aws-as-code
 
-DevOps - automation of AWS. This is a open source project can used by anyone to learn about AWS cloud.
+DevOps - automation of AWS.
 
-## Environment variable for config
+This is a open source project can be used by anyone to learn about AWS cloud as code, without touching the AWS UI.
 
-This should go ~/.bash_profile. Note: this wont work in Windows system.
+We don't use cloudFormation or terraform, which is again a layer of abstraction sits on top of rest APIs.
 
-export AWS_ACCESS_KEY_ID=AKIAY42DUI7B5GEXAMPLE
+We use aws-sdk and promise syntax to keep our code sleek and maintainable. It's an interesting journey to learn cloud.
 
-export AWS_SECRET_ACCESS_KEY=qNUdlsOwLYblablablablabxlfOc9EYQhGRo9gRJ
+All our codes are idempotent hence that.
 
-export AWS_DEFAULT_REGION=us-east-2
+## Pre-requisite
+
+Before you start your journey with API, please go through the below list thoroughly:
+
+- Install node 8+ and configure PATH env variable to work with node.
+- Install yarn (optional).
+- Configure IAM, create user, user group as documented from the UI.
+- Generate Secure access Key, access key for the new user. These details are required by API. By default access key details are not enabled for any users. These details are mandatory for AWS API to work.
+- Configure environment variable in section [Environment variable for config](#Environment_variable_for_config)
 
 ## IAM
 
@@ -64,6 +72,17 @@ Four primary IAM concepts:
 - Key can be email address, job title, name etc. These gives more flexible way to manage users.
 - AWS allows max of 50 keys for each user.
 
+## Environment variable for config
+
+This should go ~/.bash_profile. Note: this wont work in Windows system.
+This configuration is required by node to authenticate itself with the AWS.
+
+```sh
+export AWS_ACCESS_KEY_ID=AKIAY42DUI7B5GEXAMPLE
+export AWS_SECRET_ACCESS_KEY=qNUdlsOwLYblablablablabxlfOc9EYQhGRo9gRJ
+export AWS_DEFAULT_REGION=us-east-2
+```
+
 ## ARN
 
 - All aws resources are identified by ARN
@@ -88,3 +107,15 @@ Most Amazon Web Services offer a **Regional endpoint**
 - US East (N. Virginia) : us-east-1 (we are using)
 
 For more details refer : [AWS docs on endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)
+
+## Idempotent in AWS
+
+Idempotent is important as each function implicitly retires if they fails, hence one call may multiple resource in AWS. Also human error is always considered. Same function may be invoked multiple times. Hence, implementing idempotent code is important.
+
+By default some API are idempotent and they dont need any separate configuration.
+
+However, for many AWS API support a parameter called **client token**, which implement idempotent.
+
+A client token is a unique, case-sensitive string of up to 64 ASCII characters that you specify when you make a mutating API request.
+
+ref: [AWS API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
