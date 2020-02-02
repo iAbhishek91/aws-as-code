@@ -1,9 +1,9 @@
 import { EC2 } from 'aws-sdk';
-import { PRIMARY_KEY_PAIR_NAME, REGION } from '../../constants';
+import { PRIMARY_KEY_PAIR_NAME, REGION, API_VERSIONS } from '../../constants';
 import describeKeyPair from './describeKeyPair';
 
 
-const ec2 = new EC2({ region: REGION });
+const ec2 = new EC2({ region: REGION, apiVersion: API_VERSIONS.ec2 });
 
 
 // API parameters
