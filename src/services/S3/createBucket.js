@@ -1,5 +1,6 @@
 import { S3 } from 'aws-sdk';
 import { API_VERSIONS, REGION } from '../../constants';
+import { BUCKET_NAME } from './s3.data';
 
 
 const s3 = new S3({ apiVersion: API_VERSIONS.s3, region: REGION });
@@ -8,10 +9,10 @@ const s3 = new S3({ apiVersion: API_VERSIONS.s3, region: REGION });
 // API params
 const createBucketParams = {
   ACL: 'private',
-  Bucket: `london-abhishek-6220-bucket.s3.${REGION}.amazonaws.com`,
+  Bucket: BUCKET_NAME,
   CreateBucketConfiguration: {
     LocationConstraint: REGION,
-  }
+  },
 };
 
 

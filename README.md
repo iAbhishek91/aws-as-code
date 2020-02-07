@@ -43,6 +43,10 @@ export AWS_DEFAULT_REGION=us-east-2
 
 Can be found in name >> my accounts its a 12 digit number unique number per account.
 
+## Canonical user id
+
+Canonical user id is used by few services to identify the user, for example S3.
+
 ## AWS service endpoints
 
 To connect programmatically to an AWS service, you use an endpoint. An **endpoint is the URL of the entry point for an AWS web service**. The AWS SDKs and the AWS Command Line Interface (AWS CLI).

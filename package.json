@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/iAbhishek91/aws-as-code#readme",
   "dependencies": {
-    "aws-sdk": "^2.610.0"
+    "aws-sdk": "^2.610.0",
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
