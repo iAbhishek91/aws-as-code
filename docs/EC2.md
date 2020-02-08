@@ -1,4 +1,19 @@
-# AMI
+# EC2
+
+Elastic compute cloud is a service which provides virtual machine over cloud.
+
+## Stages required for creating a instance
+
+- Choose OS
+- Choosing the size of the VM (family)
+- Configuring details
+- Adding Storage
+- tagging your virtual machine
+- configuring firewall
+- Review settings
+- Select a key pair
+
+## AMI
 
 AMI: are amazon machine image.
 
