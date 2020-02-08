@@ -1,7 +1,7 @@
 /**
  * *************************************************
- * CAUTION! This function will terminate all the VMS & EBS
- * Next time you can't be able to run the same instance, minimal you need to change the clientToken
+ * CAUTION! This function will Stop all the VMS
+ * However, EBS will continue to run.
  * *************************************************
  */
 
@@ -13,8 +13,8 @@ import { REGION, API_VERSIONS } from '../../constants';
 const ec2 = new EC2({ region: REGION, apiVersion: API_VERSIONS.ec2 });
 
 
-// ref: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html
-const terminateInstances = async () => {
+// ref: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StopInstances.html
+const stopInstances = async () => {
   // Fetch the instance-ids and reduce it to form a array of InstanceIds
   const InstanceIds = (await describeInstances()).Reservations[0].Instances.reduce((acc, curr) => {
     acc.push(curr.InstanceId);
@@ -22,11 +22,16 @@ const terminateInstances = async () => {
   }, []);
 
   // API params
-  const terminateInstancesParam = { InstanceIds };
+  const stopInstancesParam = {
+    InstanceIds,
+    Hibernate: false, // do not opt for this option, if really not required.
+    Force: false, // do not flush file system caches or file system metadata, risky
+    DryRun: false,
+  };
 
-  const postTerminationData = await ec2.terminateInstances(terminateInstancesParam).promise();
+  const postStopData = await ec2.stopInstances(stopInstancesParam).promise();
 
-  console.log(postTerminationData);
+  console.log(postStopData);
 };
 
-terminateInstances();
+stopInstances();
