@@ -7,7 +7,7 @@ const ec2 = new EC2({ region: REGION, apiVersion: API_VERSIONS.ec2 });
 
 // API parameters
 const deleteKeyPairParams = {
-  KeyName: 'my-key-pair',
+  KeyName: 'my-key-pair1',
   DryRun: false, // in case true: DryRunOperation err if you are allowed, else unauthorized
 };
 

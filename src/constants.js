@@ -7,10 +7,6 @@ export const API_VERSIONS = {
   s3: '2006-03-01',
 };
 
-export const CLIENT_TOKEN = {
-  vm1: 'vm1-t2micro-ubuntu',
-};
-
 export const EC2_INSTANCE_ATTRIBUTES = {
   ImageId: 'ami-04b9e92b5572fa0d1',
 };
