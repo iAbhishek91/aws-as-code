@@ -1,5 +1,5 @@
 import { EC2 } from 'aws-sdk';
-import { REGION, API_VERSIONS } from '../../constants';
+import { REGION, API_VERSIONS, EC2_INSTANCE_ATTRIBUTES } from '../../constants';
 
 
 const ec2 = new EC2({ region: REGION, apiVersion: API_VERSIONS });
@@ -8,7 +8,7 @@ const ec2 = new EC2({ region: REGION, apiVersion: API_VERSIONS });
 // API params
 const describeImagesParams = {
   DryRun: false,
-  Owners: ['099720109477'],
+  /* Owners: ['aws'], // 099720109477
   Filters: [
     { Name: 'is-public', Values: ['true'] },
     { Name: 'image-type', Values: ['machine'] },
@@ -18,7 +18,8 @@ const describeImagesParams = {
     { Name: 'root-device-name', Values: ['/dev/sda1'] },
     // remove the below param, to get list many AMI.
     { Name: 'name', Values: ['ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20191002'] },
-  ],
+  ], */
+  ImageIds: [EC2_INSTANCE_ATTRIBUTES.ImageId],
 };
 
 

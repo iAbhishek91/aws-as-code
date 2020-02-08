@@ -8,5 +8,5 @@ export const API_VERSIONS = {
 };
 
 export const EC2_INSTANCE_ATTRIBUTES = {
-  ImageId: 'ami-04b9e92b5572fa0d1',
+  ImageId: 'ami-062f7200baf2fa504',
 };
