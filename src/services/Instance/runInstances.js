@@ -24,7 +24,7 @@ const runInstanceParams = {
   CapacityReservationSpecification: {
     CapacityReservationPreference: 'open',
   },
-  SecurityGroupIds: ['sg-0c619cd0f18ed548e'],
+  SecurityGroupIds: ['sg-0c619cd0f18ed548e'], // multiple sg can be authorized
   DisableApiTermination: false, // DON'T CHANGE! API, CLI will unable to terminate the instance
   EbsOptimized: false, // DON'T CHANGE, else extra charges applies for optimization
   // ElasticGpuSpecification.N:  this attaches additional resources is used for Windows for graphics

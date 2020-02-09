@@ -25,11 +25,6 @@ AMI: are amazon machine image.
 
 - AMI don't contain the kernel of the OS. The kernel is loaded from an **Amazon Kernel Image (AKI)**.
 
-- There are mainly **three sources of AMI**
-  - AMI provided by AWS, by AWS user community.
-  - AMI from AWS marketplace.
-  _ User own AMI.
-
 - Every AMI comes with a user from which you can ssh
 The appropriate user names are as follows:
   - For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user. (sudo su for root access)
@@ -85,3 +80,26 @@ The stats provided by AWS are:
 - Status check failed (System) (count)
 - CPU credit usage (count)
 - CPU credit balance (count)
+
+## Amazon Linux 2
+
+there are certain feature that are specific to amazon Linux 2 only:
+
+- EC2 connect
+
+## Instance details
+
+### IP address
+
+- Private IP address do not changes on stopping an IP address.
+- Public IP address are lost when instance is stopped.
+- Elastic IP address are not lost when instance is stopped.
+
+## EC2 startup scripts
+
+- this are startup commands that are taken from users when instances starts for the first time.
+- These are known as bootstrapping. As this work only during booting the system.
+- The more you give startup scripts, more time it will take for the system to start.
+- All the commands are executed as root.
+- Also scripts are executed non interactively. hence yum update without -y will not work.
+- first line should be #!/bin/bash
