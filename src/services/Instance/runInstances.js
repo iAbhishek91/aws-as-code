@@ -19,10 +19,12 @@ const runInstanceParams = {
   InstanceType: 't2.micro',
   // this need to be changed if you terminate a resource. already taken
   // `vm-${RESOURCE_SUB_TAG}-t2micro`
-  ClientToken: `vm1-${RESOURCE_SUB_TAG}-t2micro`,
+  // vm1,2-${RESOURCE_SUB_TAG}-t2micro`
+  ClientToken: `vm3-${RESOURCE_SUB_TAG}-t2micro`,
   CapacityReservationSpecification: {
     CapacityReservationPreference: 'open',
   },
+  SecurityGroupIds: ['sg-0c619cd0f18ed548e'],
   DisableApiTermination: false, // DON'T CHANGE! API, CLI will unable to terminate the instance
   EbsOptimized: false, // DON'T CHANGE, else extra charges applies for optimization
   // ElasticGpuSpecification.N:  this attaches additional resources is used for Windows for graphics

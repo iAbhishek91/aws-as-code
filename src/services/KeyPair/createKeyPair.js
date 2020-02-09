@@ -1,4 +1,5 @@
 import { EC2 } from 'aws-sdk';
+import fs from 'fs';
 import { PRIMARY_KEY_PAIR_NAME, REGION, API_VERSIONS } from '../../constants';
 import describeKeyPair from './describeKeyPair';
 
@@ -31,6 +32,11 @@ const createKeyPair = async () => {
 
     const newKeyPairDetails = await ec2.createKeyPair(createKeyPairParams).promise();
     console.log(newKeyPairDetails);
+
+    fs.writeFileSync(
+      'id_aws_us_east_1.pem', // private key must be in pem format
+      newKeyPairDetails.KeyMaterial,
+    );
     // OUTPUT below:
     /* eslint-disable max-len */
     /* { KeyFingerprint: 'b2:34:30:f8:c6:47:14:49:26:dd:52:aa:82:eb:fb:7b:34:fa:69:61',

@@ -30,6 +30,17 @@ AMI: are amazon machine image.
   - AMI from AWS marketplace.
   _ User own AMI.
 
+- Every AMI comes with a user from which you can ssh
+The appropriate user names are as follows:
+  - For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user. (sudo su for root access)
+  - For a CentOS AMI, the user name is centos.
+  - For a Debian AMI, the user name is admin or root.
+  - For a Fedora AMI, the user name is ec2-user or fedora.
+  - For a RHEL AMI, the user name is ec2-user or root.
+  - For a SUSE AMI, the user name is ec2-user or root.
+  - For an Ubuntu AMI, the user name is ubuntu.
+
+Otherwise, if ec2-user and root don't work, check with the AMI provider.
 > Note: It's important to trust the AMI publisher, at time where you are choosing to select as AMI from AWS marketplace.
 
 ## AMI life-cycle
@@ -55,3 +66,22 @@ There are many attributes of AMI. Understanding of these will help you to choose
 - *Platform:* platforms describes the OS of the AMI. **Windows**.
 - *RootDeviceType:* every AMI is backed by amazon EBS or instance store. **ebs | instance-store**. this is type of root device volume, where the primary data is stored. either it can be on AWS EBS or AWS S3 (instance store). For EBS the data is persistent for any other EBS apart from root volume, when the instance is terminated the data is lost (however we can change this behavior by modifying the flat **DeleteOnTermination** to false, its true by default). In case of S3 the data is persisted only during the life of an instance. While in stopped state the EBS data is persisted and hence charged by AWS. **RootDeviceName** is the name of the device or the mount point where the data is saved. 30gb of storage for free tier.
 - *Region | Availability zone | Local zone:* determines where exactly EC2 instance is hosted. Region is geographical area, each region has different availability zones. Local zone are area that you create near your customer base, physically outside a region boundary however its a extension of at least one region connected via network. Resources aren't replicated across the region if you don't choose to. Refer: [AWS regions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html).
+
+## AWS by default monitoring
+
+The stats provided by AWS are:
+
+- CPU utilization
+- Disk read
+- Disk read operation
+- Disk writes (Bytes)
+- Disk write operations (operations)
+- Network In (Bytes)
+- Network Out (Bytes)
+- Network Packet In (count)
+- Network Packet Out (count)
+- Status check failed (Any) (count)
+- Status check failed (Instance) (count)
+- Status check failed (System) (count)
+- CPU credit usage (count)
+- CPU credit balance (count)
