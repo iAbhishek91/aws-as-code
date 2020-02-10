@@ -296,3 +296,152 @@ Partition placement group is similar to spread, but instead of instance we launc
 Again instance in a partition do not share racks(hardware).
 
 Use cases: Hadoop, Kafka, Cassandra.
+
+### ELB
+
+- *Why we use ELB instead of custom load balancer*?
+
+Generally custom balancers cheaper to implement but requires lot of maintenance activity. However this becomes overhead when applications complexity grows overtime. However, with ELB (which is a managed AWS service) the overhead is taken care by AWS.
+
+AWS takes care of high availability of ELB, upgrade of ELB, other maintenance activity.
+Also provides easy knobs to configure the load balancer as per our requirement.
+
+- *What are the different type of load balancers*?
+
+There are three type of load balancers in AWS:
+
+classic load balancer V1 (old generation) 2009
+Application load balancers V2 (new generation) 2016
+Network load balancers V2 (new generation) 2017
+
+V1 is not recommended by amazon as its pretty old and do now support advance concepts. Its mostly deprecated.
+
+In exam question will be mainly on the V2 version.
+
+- *Where do ELB sits at network level*?
+
+ELB can be both internal(private) or external(public).
+
+- *What are health checks, and why its important in load balancers*?
+
+Load balancer distribute the traffic of the application among different instances. However its important for ELB to know which instances are healthy and which are not. If a instance are not healthy ELB do not forward any traffic to that instance.
+
+- *How health checks are implemented*?
+
+Load balancer pings each instances on certain ports and a route (mostly /health) to perform health check. If the instance returns OK(http 200), then the instance is healthy, else unhealthy. Health check feature are available for all the load balancers.
+
+- *Where do application load balancer present from network perspective*?
+
+As the name suggests application ELB sits on application layer of OSI model which is Layer 7. It works with mainly HTTP (which is again a application layer protocol).
+
+- *What are possible scenario Application load balancer V2 serves*?
+
+1 load balancing to multiple http applications across different zones.
+2  "     "        "   "        "     "          on same machine. ( containers, there are advance tools for same: Kubernetes).
+3 "     "        based on route in the URL.
+4 "     "        based on hostname of the URL.
+5 They are best suited for micro service based architecture also container based applications.
+6 port mapping features to re-direct to a dynamic port.
+7 supports SSL protocol.
+8 Great fit for ECS (using docker)
+
+- *What is stickiness in load balancer*?
+
+Application load balancer always makes sure same user always redirected to same instance in background. This is nothing to do with the instance or application.
+
+- *What are protocols supported by ELB*?
+
+HTTP, HTTPs and websocket protocol.
+
+- *How does load balancer server knows where to route the traffic to*?
+
+While the request comes from any client to load balancer, load balancer will add some header on the http request so that it remembers the ip address, port and protocol. The header names are "X-Forwarded-For", "X-Forwarded-port" and "X-Forwarded-proto"
+
+- *Which ip address is visible to application directly*?
+
+Its the private IP address of the application load balancer.
+
+- *Where do network load balancer present from network perspective*?
+
+As the name suggests network ELB sits on transport layer of OSI model which is Layer 4. It works with mainly TCP  (which is again a transport layer protocol).
+
+- *What are features of network load balancer V2 serves*?
+
+1 They are high performance, they can handel millions of request per seconds.
+2 Forward TCP traffic to your instance.
+3 Support both static and elastic IP.
+4 Less latency ~100ms (vs 400ms for ALB).
+
+These are used for achieving very very high performance. They are expensive and select if they are really required.
+
+- *What are target groups*?
+
+**TBD**
+
+- *How are load balancer identified*?
+
+All load balancer CLB, ALB and NLB have a static host name. Use that host name for accessing the load balancer. Important to note: Do not resolve the host name and use the underlying IP.
+
+- *How Load balancer scale, what should you do if you expect a very high traffic*?
+
+Load balancer cant scale instantaneously. If you expect a high traffic, then contact ASWS for something called warm-up or (pre-warming).
+
+- *What exactly is pre-warming or warming of load balancer*?
+
+Load balancers scales automatically based on traffic. However sudden increase in traffic (generally more than 50% in 5 minutes), can bring downtime as load balancer scaling takes more than a hour. In this scenario inform AWS support so that they can warm up (getting ready for the actual traffic spike in advance) the load balancing server.
+
+- *How to evaluate load balancing architecture*?
+
+(AWS White paper)[https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/#pre-warming][1]]
+
+- *what are two major component of load balancers*?
+
+controller
+load balancer server
+
+## Cloud Watch
+
+- *What are the main features of cloudWatch*?
+
+Monitors AWS resources and also the application running on AWS resources.
+
+CloudWatch can collect and track metrics.
+
+CloudWatch alarm is another feature based on the threshold value of a particular metric.
+
+CloudWatch can also change the state of the AWS resource based on the metric. Like scale up or scale down infrastructure.
+
+- *What are the different state of the cloudWatch service*?
+
+OK | ALARM | INSUFFICIENT_DATA
+
+## DR
+
+- *What are main factor to be considered in DR*?
+
+Disaster recovery. In DR strategy most important is RTO and RPO. Determining RTO and RPO is very important in architecture of DR.
+
+- *What is RTO and RPO*?
+
+RTO is recovery time objective: is a maximum duration (in time) that a company want to wait for recovery process to finish.
+RPO is recovery point objective: is a maximum amount of data (for a time span) that a company want to lose and its acceptable.
+
+- *Whats the difference between RTO and RPO*?
+
+RTO determines downtime, however RPO is regarding data measured in time. RPO can state company is ok to loose 1 hour of latest data or 2 hour.
+Solution architect should take important decision on this factor. Imagine a situation where business tells you about o hour RTO and 0 hour RPO then we have to take back up and recovery instantly, with fault tolerant system or HA system Both comes with a price.
+
+Mostly the answer will be "as little as possible" from any stakeholder. However solution architect need to clearly state the trade off between data, time and money.
+
+- *What are common factor on which RTO and RPO is decided*?
+
+Consumer of the data. (internal or external or government)
+Environment (test, pre-prod, prod)
+Geographical presence of the business. (if located in one place then most probably we can take the night time as downtime)
+Type of data, type of application.
+
+Everything depends on how much money customer want to spend based on the above factors. Also, there are sometimes regulatory or governance that restrict you from keeping RTO and RPO as minimum as possible.
+
+- *What are the services of AWS on DR*?
+
+CloudRanger is one of the famous for recover and backup for small, medium and enterprise level business.
