@@ -318,9 +318,19 @@ V1 is not recommended by amazon as its pretty old and do now support advance con
 
 In exam question will be mainly on the V2 version.
 
+- *Naming convention of AWS load balancer*?
+
+Max length 32 character.
+Cant start or end with -
+Must not begin with internal-
+
 - *Where do ELB sits at network level*?
 
 ELB can be both internal(private) or external(public).
+
+- *What are important configuration difference between Ext LB and int LB*?
+
+Ext LB can use IP address type as : "ipv4" or "dualstack", int LB can use IP address type as only "ipv4".
 
 - *What are health checks, and why its important in load balancers*?
 
@@ -389,6 +399,10 @@ Load balancer cant scale instantaneously. If you expect a high traffic, then con
 - *What exactly is pre-warming or warming of load balancer*?
 
 Load balancers scales automatically based on traffic. However sudden increase in traffic (generally more than 50% in 5 minutes), can bring downtime as load balancer scaling takes more than a hour. In this scenario inform AWS support so that they can warm up (getting ready for the actual traffic spike in advance) the load balancing server.
+
+- *State few feature of ELB, API*?
+
+All ELB API are idempotent.
 
 - *How to evaluate load balancing architecture*?
 
