@@ -7,6 +7,7 @@ export const API_VERSIONS = {
   s3: '2006-03-01',
   cw: '2010-08-01',
   elbV2: '2015-12-01',
+  dynamoDB: '2012-08-10',
 };
 
 export const EC2_INSTANCE_ATTRIBUTES = {

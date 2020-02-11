@@ -459,3 +459,10 @@ Everything depends on how much money customer want to spend based on the above f
 - *What are the services of AWS on DR*?
 
 CloudRanger is one of the famous for recover and backup for small, medium and enterprise level business.
+
+## DynamoDB
+
+- *what the different type of no-sql database available*?
+
+columnar, graph, key-pair, documents.
+
