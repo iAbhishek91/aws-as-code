@@ -41,7 +41,7 @@ const putItemsEmployeeSkillsParamsArr = employeeSkillsData.map((employeeSkill) =
   Item: {
     NoApp_EID: { N: employeeSkill[0] },
     NoApp_SkillID: { N: employeeSkill[1] },
-    Emp_age: { S: employeeSkill[2] },
+    Skill: { S: employeeSkill[2] },
   },
   TableName: 'NoAPP_Employee_Skills',
   ReturnConsumedCapacity: 'TOTAL', // details about provisioned throughput consumption

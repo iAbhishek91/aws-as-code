@@ -7,7 +7,7 @@ const dynamoDB = new DynamoDB({ region: REGION, apiVersion: API_VERSIONS.dynamoD
 
 // API params
 const createEmployeeTableParams = {
-  TableName: 'NoAPP_Employee', // table name must be unique in a regions.
+  TableName: 'NoAPP_Employee', // table name must be unique in a regions. 255 max_len
   AttributeDefinitions: [{
     AttributeName: 'NoApp_EID',
     AttributeType: 'N', // S-string, B - binary, N - number
@@ -19,8 +19,8 @@ const createEmployeeTableParams = {
     // Incase you have two key, then first one should be primary, followed by the secondary
   }], // the fields must be available in the AttributeDefinitions
   ProvisionedThroughput: {
-    ReadCapacityUnits: 1,
-    WriteCapacityUnits: 1,
+    ReadCapacityUnits: 3,
+    WriteCapacityUnits: 3,
   },
   BillingMode: 'PROVISIONED', // for predictable mode, else PAY_PER_REQUEST for unpredictable mode
   Tags: [
@@ -45,8 +45,8 @@ const createEmployeeSkillsTableParams = {
     KeyType: 'RANGE', // this is used for sort data, HASH is used for Partition key
   }], // the fields must be available in the AttributeDefinitions
   ProvisionedThroughput: {
-    ReadCapacityUnits: 1,
-    WriteCapacityUnits: 1,
+    ReadCapacityUnits: 3,
+    WriteCapacityUnits: 3,
   },
   BillingMode: 'PROVISIONED', // for predictable mode, else PAY_PER_REQUEST for unpredictable mode
   Tags: [
