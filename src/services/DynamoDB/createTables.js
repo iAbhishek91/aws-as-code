@@ -55,10 +55,12 @@ const createEmployeeSkillsTableParams = {
 };
 
 
-const createTable = async () => {
-  const newTableDetails = await dynamoDB.createTable(createEmployeeSkillsTableParams).promise();
+const createTable = () => {
+  [createEmployeeTableParams, createEmployeeSkillsTableParams].forEach(async (tableDetails) => {
+    const newTableDetails = await dynamoDB.createTable(tableDetails).promise();
 
-  console.log(newTableDetails);
+    console.log(newTableDetails);
+  });
 };
 
 createTable();
