@@ -8,7 +8,7 @@ const rds = new RDS({ region: REGION, apiVersion: API_VERSIONS.rds });
 // API params
 const deleteDBInstanceParam = {
   DBInstanceIdentifier: 'my-db-instance',
-  SkipFinalSnapshot: false, // default
+  SkipFinalSnapshot: true,
   DeleteAutomatedBackups: true, // default
 };
 
