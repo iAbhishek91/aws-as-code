@@ -8,6 +8,7 @@ export const API_VERSIONS = {
   cw: '2010-08-01',
   elbV2: '2015-12-01',
   dynamoDB: '2012-08-10',
+  rds: '2014-10-31',
 };
 
 export const EC2_INSTANCE_ATTRIBUTES = {

@@ -8,7 +8,7 @@ const ec2 = new EC2({ region: REGION, apiVersion: API_VERSIONS.ec2 });
 // API params
 const createSecurityGroupsParam = {
   Description: 'My security group for ssh',
-  GroupName: 'my-sg-group', // cant start with name 'sg-'
+  GroupName: 'my-sg-group-postgress', // cant start with name 'sg-'
   VpcId: 'vpc-81daf3fb', // this is important to note that SG are part of VPC
   DryRun: false,
 };

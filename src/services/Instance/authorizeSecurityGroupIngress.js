@@ -7,11 +7,11 @@ const ec2 = new EC2({ region: REGION, apiVersion: API_VERSIONS.ec2 });
 
 // API params
 const authorizeSGIngressParam = {
-  GroupId: 'sg-0c619cd0f18ed548e',
+  GroupId: 'sg-0c376cd26f1b71ae4',
   IpPermissions: [{
-    FromPort: 22,
+    FromPort: 5432,
     IpProtocol: 'tcp',
-    ToPort: 22,
+    ToPort: 5432,
     IpRanges: [{
       CidrIp: '0.0.0.0/0', // allow every ip
     }],
