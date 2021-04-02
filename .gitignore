@@ -1,3 +1,9 @@
+**/.terraform
+**/terraform.tfstate
+**/.terraform.lock.hcl
+**/terraform.tfstate.d
+**/terraform.tfstate.*
+
 # Logs
 logs
 *.log
