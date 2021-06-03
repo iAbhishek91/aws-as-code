@@ -37,6 +37,18 @@ There are different layer of security you can configure. Secure gateway, network
 - To choose availability zone for your EC2 instance associate it with a subnet. The instance will be launched in the same availability zone same as the subnet.
 - Rule of thumb, when you create a subnet, there should be at least one public network and another private network. The public subnet exposes the proxy server or webserver and database or backend is in private network.
 
+## Internet Gateway
+
+- Internet Gateway allows subnet to communicate with Internet.
+- In case a subnet is not associated with internet gateway, the subnet is treated as a private subnet.
+- to make a subnet public we associate 0.0.0.0/0 to internet gateway.
+
+## NAT Gateway
+
+- NAT gateway allows subnet to communicate with Internet, however its only one way.
+- Request generated from internet are not passed on to NAT subnet.
+- NAT is used in conjunction with private subnet where subnet wants to get patches or security updates from internet.
+
 ## Security
 
 Security in side VPC is provided by two concepts "Security Group" and "NACLs"
@@ -53,6 +65,14 @@ Security in side VPC is provided by two concepts "Security Group" and "NACLs"
 - NACLs are allow and deny rules
 - NACLs are stateless, hence we need to define both inbound and outbound properly
 - NACLs are meant to be simple, if we have massive complex rules, then we need to look at security rules.
+- NACLs are numbered using "rule-number".
+  - Max rule number are 32766 and *(indicate deault rule and is evaluated at last).
+  - increament by 10 or 100 for next rule, this allows you to insert new rule later as required.
+  - lowest rule is validated first.
+- by default(default VPC), allows all inbound and all outbound.
+- Each subnet should be associated with ONLY one NACL. If not associated it will be associated with the default NACL.
+- On the other hand NACL can be associated with multiple subnet.
+- When new NACL is associated the prvious association is automatically removed.
 
 ## DNS
 
