@@ -10,7 +10,13 @@
 
 ## RabbitMQ
 
-![Architecture of cluster RabbitMQ under AmazonMQ](https://github.com/iAbhishek91/aws-as-code/blob/master/docs/.images/amazon-mq-rabbitmq-broker-architecture-cluster-broker.png)
+SINGLE INSTANCE DEPLOYMENT
+
+![Architecture of single instance broker RabbitMQ](https://github.com/iAbhishek91/aws-as-code/blob/master/docs/.images/amazon-mq-rabbitmq-broker-architecture-single-broker.png)
+
+CLUSTER DEPLOYMENT
+
+![Architecture of cluster broker RabbitMQ](https://github.com/iAbhishek91/aws-as-code/blob/master/docs/.images/amazon-mq-rabbitmq-broker-architecture-cluster-broker.png)
 
 ### Broker
 
