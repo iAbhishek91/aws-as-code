@@ -83,10 +83,12 @@ Is done by defining resources defining polices and assign it to identities or AW
 
 ```js
 "Statement": [
-  "Sid": 1,
-  "Effect": "Allow", // can be Allow or Deny
-  "Action": "ec2:*", // ec2:TerminateInstance
-  "Resources": "*" // resources are identified by ARN (amazon resource name)
+  {
+    "Sid": 1,  // identifier for the statement
+    "Effect": "Allow", // can be Allow or Deny, statement can be allowed or denied
+    "Action": "ec2:*", // ec2:TerminateInstance, list of action this policy allows or denies
+    "Resources": "*" // resources are identified by ARN (amazon resource name), list of resources to which the action applied to
+  }
 ]
 ```
 

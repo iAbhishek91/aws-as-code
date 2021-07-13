@@ -1,6 +1,6 @@
 # Route-53
 
-- Its a AWS managed DNS service. Highly scalable.
+- Its a global(not specific to Route 53) AWS managed DNS service. Highly scalable.
 - Route 53 is not specific to any region.
 - Route 53 act as a DNS routing(configure rules and records), a domain registration and health checking.
 - Commpon records are:
@@ -45,6 +45,23 @@ A DNS server, often managed by ISP, that act as a intermediate b/w user reqeust 
 Record set are defined within hosted zone. Each record set has a name, type and values.
 
 Values depends on the type. It can be EC2, S3, ELB or direct IP address.
+
+### Aliasing
+
+NOTE: All DNS provider do not support aliasing, AWS does.
+
+Alising is a record type, "which provides a Route-53 secific extension to DNs functionality".
+
+- they are used to route traffic to selected AWS resources (cloudfront or S3, or elb). Instead of accessing S3 via the public URL we can configure Route53 domain name to access the endpoint.
+- they lets you route trafic from one record in a hosted zone to another record.
+- Alias record also automatically recognizes changes in the resurce. If the IP of the underlying resource changes, Route53 automatically starts to respond to DNS queries using the new IP address.
+
+HOW its different from CNAME? They are similar to CNAME, but different some aspect.
+
+- You can create alias record at the top of a DNS namespace, also known as *zone apex*. *For example, if you register the DNS name example.com, the zone apex is example.com. You can't create a CNAME record for example.com, but you can create an alias record for example.com that routes traffic to www.example.com.*
+- Queries to AWS alias to AWS resources are NOT charged, however in case of CNAME, each call to route is charged. First CNAME, the second for result of the CNAME resolution if its on the same region.
+- alias is spcific to record type specified in a DNS query, however, for CNAME, record redirects DNS queries for a record name regardless of the record type specified in the DNS query, such as A or AAAA.
+- There is also difference between output of dig or nslookup command.
 
 ### Sub Domain
 

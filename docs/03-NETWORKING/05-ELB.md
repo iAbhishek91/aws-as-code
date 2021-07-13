@@ -31,3 +31,15 @@
   - supports extreme load
 
 All the load balancer have a static host name resolved by route 53. LB scales but not instantly(they need warm-up time)
+
+## Target Group
+
+Load balancer routes request to the targets group using the target group settings that you specify, and performs health checks on the targets using the health check settings that you specify.
+
+Once it is created, we then specify the target by clicking on "Add to register"
+
+> NOTE: Load balancer listener should match with the target group. For example if there is two listener 80 and 443, then there should be target group accpting connections to those port. As well we need to match the SG
+
+## Create a LB
+
+Ref: HOW-TO/0x-create-a-ALB-route53-certmananger.md

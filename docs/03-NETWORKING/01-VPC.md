@@ -14,6 +14,7 @@ There are different layer of security you can configure. Secure gateway, network
 
 - VPC
 - SubNet
+- Route table
 - Internet gateway
 - NAT gateway
 - Virtual private gateway
@@ -31,11 +32,15 @@ There are different layer of security you can configure. Secure gateway, network
 - For every EC2 instance AWS automatically assign a address within the subnet if not explicitly define d while starting the instance.
 - You can’t assign multiple IP simultaneously to multiple instances.
 - One may create a default gateway to each subnet. Then default gateway will route all the traffic to internet gateway, NAT gateway virtual private gateway.
-- Obvious, VPC can’t span over multiple region.
+- VPC can’t span over multiple region.
 - an VPC can be span over multiple availability zone.
 - An subnet can’t span over multiple availability zone.
 - To choose availability zone for your EC2 instance associate it with a subnet. The instance will be launched in the same availability zone same as the subnet.
 - Rule of thumb, when you create a subnet, there should be at least one public network and another private network. The public subnet exposes the proxy server or webserver and database or backend is in private network.
+
+## Routing Tables
+
+- Routing tables allows traffic flow control between VPCs and internet.
 
 ## Internet Gateway
 
