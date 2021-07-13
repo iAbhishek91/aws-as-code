@@ -10,7 +10,7 @@
 
 ## RabbitMQ
 
-![Architecture of cluster RabbitMQ under AmazonMQ]()
+![Architecture of cluster RabbitMQ under AmazonMQ](https://github.com/iAbhishek91/aws-as-code/blob/master/docs/.images/amazon-mq-rabbitmq-broker-architecture-cluster-broker.png)
 
 ### Broker
 
