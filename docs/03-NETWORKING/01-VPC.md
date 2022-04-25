@@ -41,12 +41,17 @@ There are different layer of security you can configure. Secure gateway, network
 ## Routing Tables
 
 - Routing tables allows traffic flow control between VPCs and internet.
+- There is a default(known as main) route table created automatically for each VPC.
+- Route table are associated with subnet. Single route table can be associated to multiple subnet.
+- If an subnet is not associated with any route table it will be implicitly associated with the main route table. We need to remove the implicit association and associate the required subnet.
+- private subnet and public subnet are associated with different route table can be public and private. **
+- to make a route table public add a route which associate 0.0.0.0/0 to internet gateway
 
 ## Internet Gateway
 
 - Internet Gateway allows subnet to communicate with Internet.
 - In case a subnet is not associated with internet gateway, the subnet is treated as a private subnet.
-- to make a subnet public we associate 0.0.0.0/0 to internet gateway.
+- to make a subnet public we associate 0.0.0.0/0 to internet gateway.(refer in the route table)
 
 ## NAT Gateway
 
@@ -60,10 +65,12 @@ Security in side VPC is provided by two concepts "Security Group" and "NACLs"
 
 ### Security Groups
 
-- Security groups are all only rules
+- Security groups are all rules for inbound and outbound network.
 - Security groups are stateful, ie, if one way rules are defined, other is automatically defined.
 - Security group are simple to set and are main part of security.
 - Security groups can be added from a security group(as target), hence we need not bother about ip address.
+- Security groups are part of a VPC.
+- *check securityGroup.md for more details*
 
 ### NACLs
 
@@ -71,13 +78,13 @@ Security in side VPC is provided by two concepts "Security Group" and "NACLs"
 - NACLs are stateless, hence we need to define both inbound and outbound properly
 - NACLs are meant to be simple, if we have massive complex rules, then we need to look at security rules.
 - NACLs are numbered using "rule-number".
-  - Max rule number are 32766 and *(indicate deault rule and is evaluated at last).
-  - increament by 10 or 100 for next rule, this allows you to insert new rule later as required.
+  - Max rule number are 32766 and *(indicate default rule and is evaluated at last).
+  - increment by 10 or 100 for next rule, this allows you to insert new rule later as required.
   - lowest rule is validated first.
 - by default(default VPC), allows all inbound and all outbound.
 - Each subnet should be associated with ONLY one NACL. If not associated it will be associated with the default NACL.
 - On the other hand NACL can be associated with multiple subnet.
-- When new NACL is associated the prvious association is automatically removed.
+- When new NACL is associated the previous association is automatically removed.
 
 ## DNS
 
@@ -85,4 +92,3 @@ Security in side VPC is provided by two concepts "Security Group" and "NACLs"
 - DNS resolution is provided to the VPC. This feature can resolve DNS both internal and external. Uses Amazon's DNS server.
 - DNS hostname to all internal VPC instances.
 - Refer more on rout53 for more about this.
-
